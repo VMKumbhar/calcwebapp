@@ -30,11 +30,11 @@ pipeline {
         }
 
 	stage('SonarQube analysis') {
+           def mvn = tool 'java-maven';
+	   withSonarQubeEnv() {
+	      sh "${mvn}/bin/mvn clean verify sonar:sonar -Dsonar.projectKey=sonarcodecoverage -Dsonar.projectName='sonarcodecoverage'"
             steps {
-		// Change this as per your Jenkins Configuration
-                withSonarQubeEnv('SonarQube') {
-                    bat 'mvn package sonar:sonar'
-                }
+                
             }
         }
     }
