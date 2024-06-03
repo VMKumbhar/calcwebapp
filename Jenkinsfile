@@ -31,9 +31,8 @@ pipeline {
 
 	stage('SonarQube analysis') {
 	steps {
-           def mvn = tool 'java-maven';
 	   withSonarQubeEnv(installationName: 'sq1') {
-	      sh "${mvn}/bin/mvn clean verify sonar:sonar -Dsonar.projectKey=sonarcodecoverage -Dsonar.projectName='sonarcodecoverage'"
+	      bat "${mvn}/bin/mvn clean verify sonar:sonar -Dsonar.projectKey=sonarcodecoverage -Dsonar.projectName='sonarcodecoverage'"
                 
             }
         }
