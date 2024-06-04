@@ -32,7 +32,7 @@ pipeline {
 	stage('SonarQube analysis') {
 	    steps {
 	        withSonarQubeEnv(installationName: 'sq1') {
-	            bat "${mvn}/bin/mvn clean verify sonar:sonar -Dsonar.projectKey=sonarcodecoverage -Dsonar.projectName='sonarcodecoverage'"
+	            bat "mvn clean verify sonar:sonar -Dsonar.projectKey=sonarcodecoverage -Dsonar.projectName='sonarcodecoverage'"
 		}
             }
         }
