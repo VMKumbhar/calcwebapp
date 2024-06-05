@@ -6,9 +6,10 @@ public class CalculatorService {
 	{
 		return x + y;
 	}
-
+// @UKA_GENERATION_START@
 	public static int subtract(int x, int y)
 	{
 		return x - y;
 	}
+// @UKA_GENERATION_END@	
 }
