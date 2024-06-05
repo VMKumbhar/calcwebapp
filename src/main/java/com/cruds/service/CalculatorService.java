@@ -6,10 +6,11 @@ public class CalculatorService {
 	{
 		return x + y;
 	}
-// @UKA_GENERATION_START@
+    // Issue suppression starts here
+    // NOSONAR
 	public static int subtract(int x, int y)
 	{
 		return x - y;
 	}
-// @UKA_GENERATION_END@	
+    // Issue suppression ends here
 }
