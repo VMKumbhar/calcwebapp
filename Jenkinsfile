@@ -7,7 +7,6 @@ pipeline {
 		            echo "Code Checked-out Successfully!!";
             }
         }
-        stages {
         stage('Git Diff') {
             steps {
                 // Checkout the repository
