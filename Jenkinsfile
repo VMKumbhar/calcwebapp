@@ -7,33 +7,16 @@ pipeline {
 		            echo "Code Checked-out Successfully!!";
             }
         }
-        stage('Retrieve Git Info') {
+        stages {
+        stage('Git Diff') {
             steps {
-                // Execute git commands to retrieve information
-                script {
-                    // Get the commit ID of the last successful build
-                    def lastSuccessfulCommit = bat(returnStdout: true, script: 'git rev-parse HEAD').trim()
-
-                    // Get the commit ID of the current build
-                    def currentCommit = bat(returnStdout: true, script: 'git rev-parse HEAD').trim()
-
-                    // Get the changed files between the last successful commit and current commit
-                    def changedFiles = bat(returnStdout: true, script: "git diff --name-only $lastSuccessfulCommit..$currentCommit").trim()
-
-                    // Get the commit log between the last successful commit and current commit
-                    def commitLog = bat(returnStdout: true, script: "git log --pretty=oneline $lastSuccessfulCommit..$currentCommit").trim()
-
-                    // Print the retrieved information
-                    println "Last Successful Commit: $lastSuccessfulCommit"
-                    println "Current Commit: $currentCommit"
-                    println "Changed Files:"
-                    println changedFiles
-                    println "Commit Log:"
-                    println commitLog
-                }
+                // Checkout the repository
+                git branch: 'master', url: 'https://github.com/rchidana/calcwebapp.git'
+                
+                // Run git diff command to get the changes
+                bat 'git diff'
             }
         }
-
         stage('Package') {
             steps {
                 bat 'mvn package'    
