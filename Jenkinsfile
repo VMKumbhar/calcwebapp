@@ -12,16 +12,16 @@ pipeline {
                 // Execute git commands to retrieve information
                 script {
                     // Get the commit ID of the last successful build
-                    def lastSuccessfulCommit = sh(returnStdout: true, script: 'git rev-parse HEAD').trim()
+                    def lastSuccessfulCommit = bat(returnStdout: true, script: 'git rev-parse HEAD').trim()
 
                     // Get the commit ID of the current build
-                    def currentCommit = sh(returnStdout: true, script: 'git rev-parse HEAD').trim()
+                    def currentCommit = bat(returnStdout: true, script: 'git rev-parse HEAD').trim()
 
                     // Get the changed files between the last successful commit and current commit
-                    def changedFiles = sh(returnStdout: true, script: "git diff --name-only $lastSuccessfulCommit..$currentCommit").trim()
+                    def changedFiles = bat(returnStdout: true, script: "git diff --name-only $lastSuccessfulCommit..$currentCommit").trim()
 
                     // Get the commit log between the last successful commit and current commit
-                    def commitLog = sh(returnStdout: true, script: "git log --pretty=oneline $lastSuccessfulCommit..$currentCommit").trim()
+                    def commitLog = bat(returnStdout: true, script: "git log --pretty=oneline $lastSuccessfulCommit..$currentCommit").trim()
 
                     // Print the retrieved information
                     println "Last Successful Commit: $lastSuccessfulCommit"
